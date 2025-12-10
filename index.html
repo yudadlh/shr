@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Generator Undangan - Yuda & Riris</title>
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;margin:18px;line-height:1.5;color:#111}
+    .card{max-width:800px;margin:10px auto;padding:18px;border-radius:10px;border:1px solid #e6e6e6;box-shadow:0 6px 18px rgba(0,0,0,0.03)}
+    label{display:block;margin:10px 0 6px;font-weight:600}
+    input[type="text"]{width:100%;padding:10px;border-radius:8px;border:1px solid #ccc}
+    textarea{width:100%;min-height:220px;padding:12px;border-radius:8px;border:1px solid #ccc;white-space:pre-wrap}
+    .row{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+    button, a.button{padding:10px 12px;border-radius:8px;border:none;background:#0b74e6;color:white;text-decoration:none;cursor:pointer}
+    button.secondary{background:#666}
+    small{color:#666}
+    .hint{background:#f8f9fb;padding:10px;border-radius:8px;margin-top:12px;border:1px dashed #e0e0e0}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>Generator Pesan Undangan — Yuda & Riris</h2>
+    <p>Masukkan nama tamu (contoh: <i>Ani</i> atau <i>Budi Santoso</i>). Script akan menambahkan "<b>& Partner</b>" secara otomatis.</p>
+
+    <label for="guest">Nama Tamu</label>
+    <input id="guest" type="text" placeholder="Masukkan nama tamu..." />
+
+    <div class="row">
+      <button id="gen">Buat Pesan</button>
+      <button id="copy" class="secondary">Copy ke Clipboard</button>
+      <a id="wa" class="button" href="#" target="_blank" rel="noopener noreferrer">Share ke WhatsApp</a>
+      <button id="webshare">Share (Jika didukung)</button>
+    </div>
+
+    <div class="hint">
+      <strong>Link personal:</strong>
+      <div id="personalLink" style="margin-top:8px;word-break:break-all"></div>
+      <small>Link ini menggunakan halamanmu sendiri (GitHub Pages). Jika mau pakai domain lain (contoh <code>meong.nl</code>), kamu perlu menghubungkan domain custom ke GitHub Pages atau mengubah template link di kode.</small>
+    </div>
+
+    <label for="output">Pesan Undangan (hasil)</label>
+    <textarea id="output" readonly></textarea>
+  </div>
+
+<script>
+(function(){
+  const guestInput = document.getElementById('guest');
+  const genBtn = document.getElementById('gen');
+  const copyBtn = document.getElementById('copy');
+  const waLink = document.getElementById('wa');
+  const out = document.getElementById('output');
+  const personalLinkDiv = document.getElementById('personalLink');
+  const webShareBtn = document.getElementById('webshare');
+
+  // Template pesan (ubah kalau perlu)
+  function buildMessage(name){
+    const nameWithPartner = name + " & Partner";
+    const slug = name.trim().replace(/\s+/g,'-');
+    // NOTE: domain meong.nl digunakan oleh user; engine uses current host for personal preview
+    const meongLink = "https://meong.nl/" + encodeURIComponent(slug) + "-dan-Partner";
+    const personalPage = location.origin + location.pathname + "?guest=" + encodeURIComponent(name);
+    return {
+      text: [
+        "Assalamu’alaikum Wr. Wb",
+        "Bismillahirahmanirrahim.",
+        "",
+        "Yth. " + nameWithPartner,
+        "",
+        "Tanpa mengurangi rasa hormat, perkenankan kami mengundang Bapak/Ibu/Saudara/i, teman sekaligus sahabat, untuk menghadiri acara ngunduh mantu:",
+        "",
+        "Yuda & Riris",
+        "",
+        "Berikut link undangan kami untuk info lengkap dari acara bisa kunjungi :",
+        "",
+        meongLink,
+        "",
+        "Merupakan suatu kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan untuk hadir dan memberikan doa restu.",
+        "",
+        "Mohon maaf perihal undangan hanya di bagikan melalui pesan ini. Terima kasih banyak atas perhatiannya.",
+        "",
+        "Wassalamu’alaikum Wr. Wb.",
+        "Terima Kasih."
+      ].join("\\n"),
+      meongLink,
+      personalPage
+    };
+  }
+
+  function updateUIFor(name){
+    if(!name || !name.trim()){
+      out.value = "";
+      personalLinkDiv.textContent = "";
+      waLink.href = "#";
+      return;
+    }
+    const msg = buildMessage(name);
+    out.value = msg.text;
+    // WhatsApp share link (works on mobile & web.whatsapp.com)
+    const waHref = "https://wa.me/?text=" + encodeURIComponent(msg.text);
+    waLink.href = waHref;
+    personalLinkDiv.innerHTML = '<a href="' + msg.personalPage + '" target="_blank" rel="noopener noreferrer">' + msg.personalPage + '</a>';
+  }
+
+  genBtn.addEventListener('click', () => {
+    const name = guestInput.value;
+    updateUIFor(name);
+  });
+
+  copyBtn.addEventListener('click', async () => {
+    if(!out.value) { alert("Buat pesan dulu dengan klik 'Buat Pesan'"); return; }
+    try {
+      await navigator.clipboard.writeText(out.value);
+      alert("Pesan tersalin ke clipboard. Sekarang bisa kamu paste ke Instagram DM / WhatsApp / DM lainnya.");
+    } catch (e) {
+      // fallback
+      out.select();
+      document.execCommand('copy');
+      alert("Pesan tersalin (fallback).");
+    }
+  });
+
+  webShareBtn.addEventListener('click', async () => {
+    if(!out.value){ alert("Buat pesan dulu dengan klik 'Buat Pesan'"); return; }
+    if(navigator.share){
+      try{
+        await navigator.share({
+          title: "Undangan Yuda & Riris",
+          text: out.value
+        });
+      }catch(err){
+        // user cancelled or error
+      }
+    } else {
+      alert("Web Share API tidak didukung di perangkat ini. Silakan gunakan tombol Copy lalu paste di Instagram DM atau aplikasi pesan.");
+    }
+  });
+
+  // Auto-generate if ?guest= in URL
+  function getQueryParam(name){
+    const params = new URLSearchParams(location.search);
+    return params.get(name);
+  }
+  const guestFromURL = getQueryParam('guest');
+  if(guestFromURL){
+    guestInput.value = guestFromURL;
+    updateUIFor(guestFromURL);
+  }
+
+  // Optional: live preview while typing
+  guestInput.addEventListener('input', () => {
+    // don't auto-update WA/links on typing; user can press "Buat Pesan"
+    // uncomment to live-update:
+    // updateUIFor(guestInput.value);
+  });
+
+})();
+</script>
+</body>
+</html>

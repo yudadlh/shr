@@ -1,159 +1,387 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Generator Undangan - Yuda & Riris</title>
-  <style>
-    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;margin:18px;line-height:1.5;color:#111}
-    .card{max-width:800px;margin:10px auto;padding:18px;border-radius:10px;border:1px solid #e6e6e6;box-shadow:0 6px 18px rgba(0,0,0,0.03)}
-    label{display:block;margin:10px 0 6px;font-weight:600}
-    input[type="text"]{width:100%;padding:10px;border-radius:8px;border:1px solid #ccc}
-    textarea{width:100%;min-height:220px;padding:12px;border-radius:8px;border:1px solid #ccc;white-space:pre-wrap}
-    .row{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
-    button, a.button{padding:10px 12px;border-radius:8px;border:none;background:#0b74e6;color:white;text-decoration:none;cursor:pointer}
-    button.secondary{background:#666}
-    small{color:#666}
-    .hint{background:#f8f9fb;padding:10px;border-radius:8px;margin-top:12px;border:1px dashed #e0e0e0}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generator Undangan Pernikahan</title>
+    <script type="text/javascript" src="https://me.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=gXDdJL9ZBJbiqLJb4ud_6GOQUCYvyXz4w_I1g4g1OYli67hEPBnXpxPDRN8FjDPxlLYwIUIBnJ564tbEmI9JDnV-W6Pkr-It0j5KukwovIQqByHP7ARSpy14fv_4eXI9YDiUUivxbjSQXY__uSHLbB8rfUKRhO4hgE2m0Vk33FE_n5Tq45Uv-yhnB8WvJ993G8HbcHyNFXV2fu2zh74BHB_b2C0vtda7VDCvAMIBBawhHzqB7r6rQRi4imkbcsC4qCth17Ke7AzwY0EBxjGPQrRW_w7O2OxFG4q-eJw0qqpiS6CfP2mruhZzbrJQnwtvtW4JzoM-y62wBqCdDQ6rW6vxP1WwiOvMeHgOx7NahymoisuvLxv8_JMkeXYRokiPXCUdWPD-RZBLfx9YQ_6r5zYiF4xHwqBkgk35JgYJGSphDmCVDWl3wXpqI6e0QxWhhIvLp7hnIVVnrea8XlwK22xTNwwyMAumg-GH8h5TQm45ZszJ0VIHpqbalmU5B2PvAcwHEnq68zW58lxDJd3hSnEVU_MEWvwV9MhIq_bu8bsJAsyI1D_3MyV4ALoElypPGxf_817JGoNAud_wPL73IkEkLKzwwXmhNekkKrHIGfQFvMW0BEX_pKbe_lPsTTOmH3z03jXr_faLlvU1UwH7KRXfuWNpvA3qH35feYCIXkHh_etaJaLt5iJKLGpVKkOtIojwfLRYHnpbZfVNXn8MwTKzH2e6_1uieJ4xqcBXPxItU-LhGtGwL5Z-WAiwRXQ7ixLynuadrxT-LsHooqX8F3V3jl1x9Ym2uawjto8rbHlDxfJpVD8paH8_M8IvwdcuZ84fMFVaST06XKUcQJKR1spiEg60ii6H6rZFL1Zxr05JvPwa0OLW3q6x1wRHIhHT5-wvYmbQJCkUYL_CT7LzuhzOdjDYfMHJg2aoogOe_jDSzuYRy7_rZl7mAKsNMH5tR6hh5yE6PMY6Z1dLXzBCCQ3ILReQHxPJJNW-SID-YwEP9Tq07hVDK_vdknQ7SZs_HzF6Lsnn8Jvt7t5goMvoUEs3IIBaIzxU9V7P_w-IjahFHoLYbc4AyyRLQxMTTNYEPIz3_vmspMBOLy1xOP06lqpwir5HkYgmZt1-bV7A-95frSNQnMupoCRHNtfhgZGUHq_MmF1z-FZxNPk_19mGyyUKBecTW9I3w-Xqj8QaEJNOvuRj99AtcFEDYukef0d6yPLuroWbenH9g7MVoaFIVn2anPrdKI1OK7TBE_QM6z3WgqXMwzxHY-TmB77yHwcbEwHqFuIS2qfuhARP5ioyo5LKTKBg-1JfYbTE__JZS_dvOBIJoBo6rXvNWHB6noN-gfUAuQua2hALar6_IgRQsENYsp-9fk3sLNtYgiIZKOUi6Hbu8ge90EBfYDGfE9CtP2PU0eWsNMB-XqEzp26P917QgtfQrcAUtFVeNHiF0DfDEh3o-C6TqFINYIV1vgu3LBtjI-MD18qCRpTYZKV7xaiWcmdekxPndSdtuOv2h1FTvioVCBwYVF67BNST3bOjCyg7IsYtR8clAPJwlhA2MZa9KyiFug4tOE6VAGY5Ae-gu28UzJKYLetLmn1uHUQx5PPSFvEcWjedw8LGKc1EkiP810AWtC5Iq7zqYYsIOBYwy65oh3m01C4WNvc7fG_HF37D9SH16uZCuxMdl6ecDBkc0ooTV_GPq8IKT3neYUb-MDmpM4ZVjvW1YnnHct4W7qmvOwinPgGKaB1wdhVVdvJ-KGiddLp7PG7oiGgPFjm48UpU-Uti-yly4CN2oxcmPuzt0mDtKOEEqchxL1cekfyZLMtgPtrOukAOxUcskBJeNkiDrDKfSDz0Aq3kKhUYRAUGJxYmuYJTtCcg1MZvq8eMOKiy80kZPHdiS9Qd70roLiM659Z_cmamlHNY1QsEfQJS8YIS2GrIWV3WhT2XY0V1wTp5SP818xnkAU1QFwADI2zro5mzKg3m3hOYgT4TAN2u58qN2ulNwjx1wO6Z_rG3yj0ljA5Eu5w1J-fUi5S-wJOtQTYR8IDjhWNU08qfxqywWQFe02yIlOB6sSaxJR6gVHrqIdcrAT-SIvdJCMvWS22xVGU-x7ylVPSxzF8qUkRU2XBC7PTrQLzmPINmM8TrfdpKO-y2v80HwBqczjtbFWSF0owfrCwa2-ADVD-zFRo6SfBlARzjtfMgvx1fbssZ3i5DRsT2hy1654a5r6l_kn5o4sTw1-WtNxIW6s8rS96m2crpz4UB7XJann0vzpjEx6a_5VMWyjSKgMCln-cnHYm5SQF7sH5q1vM4wlhsYc0J_YnAgXgssmjwpynonP8vjAXJAleCNTFpUu-wupdpbCJPpZnloy2b8dLX-his" charset="UTF-8"></script><style>
+        :root {
+            --color-white: rgba(255, 255, 255, 1);
+            --color-cream-50: rgba(252, 252, 249, 1);
+            --color-cream-100: rgba(255, 255, 253, 1);
+            --color-gray-200: rgba(245, 245, 245, 1);
+            --color-gray-300: rgba(167, 169, 169, 1);
+            --color-slate-500: rgba(98, 108, 113, 1);
+            --color-slate-900: rgba(19, 52, 59, 1);
+            --color-teal-500: rgba(33, 128, 141, 1);
+            --color-teal-600: rgba(29, 116, 128, 1);
+            --color-teal-700: rgba(26, 104, 115, 1);
+            
+            --color-background: var(--color-cream-50);
+            --color-surface: var(--color-cream-100);
+            --color-text: var(--color-slate-900);
+            --color-primary: var(--color-teal-500);
+            --color-primary-hover: var(--color-teal-600);
+            --focus-ring: 0 0 0 3px rgba(33, 128, 141, 0.4);
+            
+            --font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-size-base: 14px;
+            --space-8: 8px;
+            --space-12: 12px;
+            --space-16: 16px;
+            --space-20: 20px;
+            --space-24: 24px;
+            --space-32: 32px;
+            --radius-base: 8px;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.04), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: var(--space-16);
+            font-family: var(--font-family-base);
+            background: var(--color-background);
+            color: var(--color-text);
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            margin: 0 0 var(--space-8) 0;
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        .subtitle {
+            color: var(--color-slate-500);
+            margin: 0 0 var(--space-24) 0;
+        }
+
+        .input-group {
+            margin-bottom: var(--space-20);
+        }
+
+        label {
+            display: block;
+            margin-bottom: var(--space-8);
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: var(--space-12);
+            border: 1px solid rgba(94, 82, 64, 0.2);
+            border-radius: var(--radius-base);
+            font-size: var(--font-size-base);
+            font-family: var(--font-family-base);
+            background: var(--color-surface);
+            color: var(--color-text);
+            transition: border-color 250ms, box-shadow 250ms;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: var(--focus-ring);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-12) var(--space-20);
+            background: var(--color-primary);
+            color: var(--color-white);
+            border: none;
+            border-radius: var(--radius-base);
+            font-size: var(--font-size-base);
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 250ms;
+        }
+
+        .btn:hover {
+            background: var(--color-primary-hover);
+        }
+
+        .btn:active {
+            background: var(--color-teal-700);
+        }
+
+        .btn:focus-visible {
+            outline: none;
+            box-shadow: var(--focus-ring);
+        }
+
+        .btn--secondary {
+            background: rgba(94, 82, 64, 0.12);
+            color: var(--color-text);
+            margin-left: var(--space-12);
+        }
+
+        .btn--secondary:hover {
+            background: rgba(94, 82, 64, 0.2);
+        }
+
+        .output-section {
+            margin-top: var(--space-32);
+            padding: var(--space-20);
+            background: var(--color-surface);
+            border: 1px solid rgba(94, 82, 64, 0.12);
+            border-radius: var(--radius-base);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .output-section h2 {
+            margin: 0 0 var(--space-16) 0;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .message-box {
+            background: var(--color-white);
+            border: 1px solid rgba(94, 82, 64, 0.12);
+            border-radius: var(--radius-base);
+            padding: var(--space-16);
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            min-height: 300px;
+            max-height: 500px;
+            overflow-y: auto;
+            margin-bottom: var(--space-16);
+        }
+
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-12);
+        }
+
+        .btn--copy {
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .btn--share {
+            background: #25D366;
+        }
+
+        .btn--share:hover {
+            background: #1ebd56;
+        }
+
+        .btn--share-ig {
+            background: #E4405F;
+        }
+
+        .btn--share-ig:hover {
+            background: #d1306f;
+        }
+
+        .feedback {
+            margin-top: var(--space-16);
+            padding: var(--space-12);
+            border-radius: var(--radius-base);
+            text-align: center;
+            font-size: 13px;
+            display: none;
+        }
+
+        .feedback.show {
+            display: block;
+        }
+
+        .feedback.success {
+            background: rgba(33, 128, 141, 0.1);
+            color: var(--color-primary);
+            border: 1px solid rgba(33, 128, 141, 0.25);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: var(--space-12);
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .btn--secondary {
+                margin-left: 0;
+                width: 100%;
+            }
+
+            .btn--copy {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="card">
-    <h2>Generator Pesan Undangan — Yuda & Riris</h2>
-    <p>Masukkan nama tamu (contoh: <i>Ani</i> atau <i>Budi Santoso</i>). Script akan menambahkan "<b>& Partner</b>" secara otomatis.</p>
+    <div class="container">
+        <h1>📧 Generator Undangan Pernikahan</h1>
+        <p class="subtitle">Yuda & Riris - Buat dan bagikan undangan dengan mudah</p>
 
-    <label for="guest">Nama Tamu</label>
-    <input id="guest" type="text" placeholder="Masukkan nama tamu..." />
+        <div class="input-group">
+            <label for="namaInput">Nama Tamu & Partner</label>
+            <input 
+                type="text" 
+                id="namaInput" 
+                placeholder="Contoh: John Doe" 
+                autocomplete="off"
+            >
+            <small style="color: var(--color-slate-500); display: block; margin-top: var(--space-8);">
+                Masukkan nama tamu, misalnya: "Budi Santoso", "Siti & Rama", dll
+            </small>
+        </div>
 
-    <div class="row">
-      <button id="gen">Buat Pesan</button>
-      <button id="copy" class="secondary">Copy ke Clipboard</button>
-      <a id="wa" class="button" href="#" target="_blank" rel="noopener noreferrer">Share ke WhatsApp</a>
-      <button id="webshare">Share (Jika didukung)</button>
+        <div style="display: flex; gap: var(--space-12);">
+            <button class="btn btn--copy" onclick="generateMessage()">Generate Pesan</button>
+            <button class="btn btn--secondary" onclick="clearAll()">Bersihkan</button>
+        </div>
+
+        <div id="outputSection" class="output-section hidden">
+            <h2>📋 Pesan Siap Dikirim</h2>
+            
+            <div class="message-box" id="messageOutput"></div>
+
+            <div class="button-group">
+                <button class="btn btn--copy" onclick="copyToClipboard()">📋 Copy Pesan</button>
+                <button class="btn btn--share" onclick="shareToWhatsApp()">💬 Kirim ke WA</button>
+                <button class="btn btn--share-ig" onclick="shareToInstagram()">📸 Copy untuk IG DM</button>
+            </div>
+
+            <div class="feedback" id="feedback"></div>
+        </div>
     </div>
 
-    <div class="hint">
-      <strong>Link personal:</strong>
-      <div id="personalLink" style="margin-top:8px;word-break:break-all"></div>
-      <small>Link ini menggunakan halamanmu sendiri (GitHub Pages). Jika mau pakai domain lain (contoh <code>meong.nl</code>), kamu perlu menghubungkan domain custom ke GitHub Pages atau mengubah template link di kode.</small>
-    </div>
+    <script>
+        const namaInput = document.getElementById('namaInput');
+        const outputSection = document.getElementById('outputSection');
+        const messageOutput = document.getElementById('messageOutput');
+        const feedback = document.getElementById('feedback');
 
-    <label for="output">Pesan Undangan (hasil)</label>
-    <textarea id="output" readonly></textarea>
-  </div>
+        function sanitizeInput(text) {
+            return text.trim();
+        }
 
-<script>
-(function(){
-  const guestInput = document.getElementById('guest');
-  const genBtn = document.getElementById('gen');
-  const copyBtn = document.getElementById('copy');
-  const waLink = document.getElementById('wa');
-  const out = document.getElementById('output');
-  const personalLinkDiv = document.getElementById('personalLink');
-  const webShareBtn = document.getElementById('webshare');
+        function generateMessage() {
+            const nama = sanitizeInput(namaInput.value);
+            
+            if (!nama) {
+                showFeedback('Silakan masukkan nama tamu terlebih dahulu', 'error');
+                return;
+            }
 
-  // Template pesan (ubah kalau perlu)
-  function buildMessage(name){
-    const nameWithPartner = name + " & Partner";
-    const slug = name.trim().replace(/\s+/g,'-');
-    // NOTE: domain meong.nl digunakan oleh user; engine uses current host for personal preview
-    const meongLink = "https://meong.nl/" + encodeURIComponent(slug) + "-dan-Partner";
-    const personalPage = location.origin + location.pathname + "?guest=" + encodeURIComponent(name);
-    return {
-      text: [
-        "Assalamu’alaikum Wr. Wb",
-        "Bismillahirahmanirrahim.",
-        "",
-        "Yth. " + nameWithPartner,
-        "",
-        "Tanpa mengurangi rasa hormat, perkenankan kami mengundang Bapak/Ibu/Saudara/i, teman sekaligus sahabat, untuk menghadiri acara ngunduh mantu:",
-        "",
-        "Yuda & Riris",
-        "",
-        "Berikut link undangan kami untuk info lengkap dari acara bisa kunjungi :",
-        "",
-        meongLink,
-        "",
-        "Merupakan suatu kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan untuk hadir dan memberikan doa restu.",
-        "",
-        "Mohon maaf perihal undangan hanya di bagikan melalui pesan ini. Terima kasih banyak atas perhatiannya.",
-        "",
-        "Wassalamu’alaikum Wr. Wb.",
-        "Terima Kasih."
-      ].join("\\n"),
-      meongLink,
-      personalPage
-    };
-  }
+            const link = `https://meong.nl/${nama.replace(/\s+/g, '-').toLowerCase()}-dan-Partner`;
+            
+            const message = `Assalamu'alaikum Wr. Wb
+Bismillahirahmanirrahim.
 
-  function updateUIFor(name){
-    if(!name || !name.trim()){
-      out.value = "";
-      personalLinkDiv.textContent = "";
-      waLink.href = "#";
-      return;
-    }
-    const msg = buildMessage(name);
-    out.value = msg.text;
-    // WhatsApp share link (works on mobile & web.whatsapp.com)
-    const waHref = "https://wa.me/?text=" + encodeURIComponent(msg.text);
-    waLink.href = waHref;
-    personalLinkDiv.innerHTML = '<a href="' + msg.personalPage + '" target="_blank" rel="noopener noreferrer">' + msg.personalPage + '</a>';
-  }
+Yth. ${nama} & Partner
 
-  genBtn.addEventListener('click', () => {
-    const name = guestInput.value;
-    updateUIFor(name);
-  });
+Tanpa mengurangi rasa hormat, perkenankan kami mengundang Bapak/Ibu/Saudara/i, teman sekaligus sahabat, untuk menghadiri acara pernikahan kami :
 
-  copyBtn.addEventListener('click', async () => {
-    if(!out.value) { alert("Buat pesan dulu dengan klik 'Buat Pesan'"); return; }
-    try {
-      await navigator.clipboard.writeText(out.value);
-      alert("Pesan tersalin ke clipboard. Sekarang bisa kamu paste ke Instagram DM / WhatsApp / DM lainnya.");
-    } catch (e) {
-      // fallback
-      out.select();
-      document.execCommand('copy');
-      alert("Pesan tersalin (fallback).");
-    }
-  });
+Yuda & Riris
 
-  webShareBtn.addEventListener('click', async () => {
-    if(!out.value){ alert("Buat pesan dulu dengan klik 'Buat Pesan'"); return; }
-    if(navigator.share){
-      try{
-        await navigator.share({
-          title: "Undangan Yuda & Riris",
-          text: out.value
+Berikut link undangan kami untuk info lengkap dari acara bisa kunjungi :
+
+${link}
+
+Merupakan suatu kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan untuk hadir dan memberikan doa restu.
+
+Mohon maaf perihal undangan hanya di bagikan melalui pesan ini. Terima kasih banyak atas perhatiannya.
+
+Wassalamu'alaikum Wr. Wb.
+Terima Kasih.`;
+
+            messageOutput.textContent = message;
+            outputSection.classList.remove('hidden');
+            showFeedback('Pesan berhasil dibuat!', 'success');
+        }
+
+        function copyToClipboard() {
+            const text = messageOutput.textContent;
+            
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(() => {
+                    showFeedback('✓ Pesan sudah disalin ke clipboard', 'success');
+                }).catch(() => {
+                    fallbackCopy(text);
+                });
+            } else {
+                fallbackCopy(text);
+            }
+        }
+
+        function fallbackCopy(text) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            showFeedback('✓ Pesan sudah disalin ke clipboard', 'success');
+        }
+
+        function shareToWhatsApp() {
+            const text = encodeURIComponent(messageOutput.textContent);
+            const whatsappUrl = `https://wa.me/?text=${text}`;
+            window.open(whatsappUrl, '_blank');
+        }
+
+        function shareToInstagram() {
+            copyToClipboard();
+            showFeedback('✓ Pesan sudah disalin. Buka Instagram dan paste di DM', 'success');
+        }
+
+        function showFeedback(message, type) {
+            feedback.textContent = message;
+            feedback.className = `feedback show ${type}`;
+            
+            setTimeout(() => {
+                feedback.classList.remove('show');
+            }, 3000);
+        }
+
+        function clearAll() {
+            namaInput.value = '';
+            outputSection.classList.add('hidden');
+            messageOutput.textContent = '';
+            feedback.classList.remove('show');
+            namaInput.focus();
+        }
+
+        // Allow Enter key to generate message
+        namaInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                generateMessage();
+            }
         });
-      }catch(err){
-        // user cancelled or error
-      }
-    } else {
-      alert("Web Share API tidak didukung di perangkat ini. Silakan gunakan tombol Copy lalu paste di Instagram DM atau aplikasi pesan.");
-    }
-  });
 
-  // Auto-generate if ?guest= in URL
-  function getQueryParam(name){
-    const params = new URLSearchParams(location.search);
-    return params.get(name);
-  }
-  const guestFromURL = getQueryParam('guest');
-  if(guestFromURL){
-    guestInput.value = guestFromURL;
-    updateUIFor(guestFromURL);
-  }
-
-  // Optional: live preview while typing
-  guestInput.addEventListener('input', () => {
-    // don't auto-update WA/links on typing; user can press "Buat Pesan"
-    // uncomment to live-update:
-    // updateUIFor(guestInput.value);
-  });
-
-})();
-</script>
+        // Focus input on load
+        namaInput.focus();
+    </script>
 </body>
 </html>

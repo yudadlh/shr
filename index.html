@@ -244,10 +244,12 @@
       }
 
       function buildLink(name) {
-        const base = getSelectedDomain();
-        const safe = encodeURIComponent(name.replace(/\s+/g, '-').toLowerCase());
-        return base + safe + '';
-      }
+  const base = getSelectedDomain();
+  // ganti spasi jadi dash, TANPA toLowerCase supaya kapital tetap dipertahankan
+  const safe = encodeURIComponent(name.replace(/\s+/g, '-'));
+  return base + safe;
+}
+
 
 function isHuanxilitang() {
   const domain = getSelectedDomain();
